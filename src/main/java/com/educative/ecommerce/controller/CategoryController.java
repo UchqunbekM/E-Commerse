@@ -31,7 +31,7 @@ public class CategoryController {
     @PostMapping("/update/{categoryId}")
     public ResponseEntity<ApiResponce> updateCategory(@PathVariable("categoryId") int categoryId,@RequestBody Category category ){
         System.out.println("categoryId = " + categoryId);
-      if(categoryService.findByid(categoryId)){
+      if(!(categoryService.findByid(categoryId))){
           return new ResponseEntity<>(new ApiResponce(true,"Category not found"),HttpStatus.NOT_FOUND);
       }
         categoryService.editCategory(categoryId, category);
